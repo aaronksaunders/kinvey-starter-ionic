@@ -1,0 +1,26 @@
+<ion-view title="ListPage">
+  <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+    <ion-nav-buttons side="left">
+      <button class="button button-clear button-positive" ng-click="addItem()">
+        Add
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button button-clear button-positive" ng-click="logout()">
+        Logout
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content padding="true" class="has-header">
+    <ion-list >
+      <ion-item ng-repeat="data in dataList"
+       ng-href="#/DetailPage/{{data._id}}">
+        {{data.title}}
+        <ion-option-button class="button-assertive"
+                           ng-click="deleteItem(data._id)">
+                           DELETE
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

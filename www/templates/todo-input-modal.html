@@ -1,0 +1,21 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">Add Todo</h1>
+  </ion-header-bar>
+  <ion-content padding="true">
+    <div class="list item padding">
+      <label class="item item-input">
+        <span class="input-label">Title</span>
+        <input type="text" ng-model="todo.title">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Description</span>
+        <input type="text" ng-model="todo.description">
+      </label>
+
+      <div style="padding-top: 50px;">
+        <button class="button button-full button-energized" ng-click="closeModal()">Done</button>
+        <button class="button button-full button-assertive" ng-click="closeModal(true)">Cancel</button>
+      </div>
+    </ion-content>
+  </div>
