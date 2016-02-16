@@ -7,8 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services', 'app.directives', 'kinvey'])
   .value('KinveyConfiguration', {
-    appKey: "xxxxxx",
-    appSecret: "xxxxxxxxxxxx"
+    appKey: "kid1781",
+    appSecret: "5a6fe9bc0c524dbbaccb1bf8d5729d89"
   })
   .run(function($ionicPlatform, $rootScope, $state) {
 

@@ -113,15 +113,12 @@ angular.module('app.services', [])
          */
         createUser: function(_userParams) {
 
-          var user = new Parse.User();
-          user.set("username", _userParams.email);
-          user.set("password", _userParams.password);
-          user.set("email", _userParams.email);
-          user.set("first_name", _userParams.first_name);
-          user.set("last_name", _userParams.last_name);
-
-          // should return a promise
-          return user.signUp(null, {});
+          var promise = $kinvey.User.signup({
+              username : _userParams.username,
+              password : _userParams.password,
+              name: _userParams.name
+          });
+          return promise;
 
         },
         /**
@@ -133,16 +130,7 @@ angular.module('app.services', [])
 
           // if there is no user passed in, see if there is already an
           // active user that can be utilized
-          _parseInitUser = _parseInitUser ? _parseInitUser : Parse.User.current();
 
-          console.log("_parseInitUser " + Parse.User.current());
-          if (!_parseInitUser) {
-            return $q.reject({
-              error: "noUser"
-            });
-          } else {
-            return $q.when(_parseInitUser);
-          }
         },
         /**
          *

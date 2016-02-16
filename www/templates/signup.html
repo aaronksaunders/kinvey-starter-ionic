@@ -4,18 +4,20 @@
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Name</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="user.name">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Username</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="user.username">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Password</span>
-                    <input type="text" placeholder="">
+                    <input type="password" placeholder=""  ng-model="user.password">
                 </label>
             </ion-list>
-            <a href="#/ListPage" class="button button-stable button-block ">Sign up</a>
+            <div style="padding-top: 50px;" >
+            <a ng-click="doCreateAccount()" class="button button-stable button-block ">Sign up</a>
+          </div>
         </form>
         <a href="#/LoginPage" class="button button-assertive button-block ">Cancel</a>
     </ion-content>

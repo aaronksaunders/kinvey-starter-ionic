@@ -4,7 +4,7 @@ angular.module('app.controllers', [])
   '$state', '$scope', 'UserService', // <-- controller dependencies
   function($state, $scope, UserService) {
 
-    debugger;
+    UserService.init();
 
     // ng-model holding values from view/html
     $scope.creds = {
@@ -32,7 +32,7 @@ angular.module('app.controllers', [])
       UserService.login($scope.creds.username, $scope.creds.password)
         .then(function(_response) {
 
-          alert("login success " + _response.attributes.username);
+          alert("login success " + _response.name || _response.username);
 
           // transition to next state
           $state.go('listPage');
@@ -44,9 +44,23 @@ angular.module('app.controllers', [])
   }
 ])
 
-.controller('signupCtrl', function($scope) {
+/**
+*
+*/
+.controller('signupCtrl', ['$scope', '$state', 'UserService', function($scope, $state, UserService) {
+  $scope.user = {};
 
-})
+  $scope.doCreateAccount = function() {
+    UserService.createUser($scope.user).then(function(_response) {
+      console.log("created user", _response);
+      alert("login success " + _response.name || _response.username);
+      $state.go('listPage');
+    }, function(_error) {
+      console.log(_error);
+      alert("error logging in " + _error.description);
+    });
+  }
+}])
 
 .controller('listPageCtrl', ['$state', '$scope', 'UserService', 'ToDoService', '$ionicModal', // <-- controller dependencies
   function($state, $scope, UserService, ToDoService, $ionicModal) {
@@ -58,7 +72,7 @@ angular.module('app.controllers', [])
     $scope.deleteItem = function(_itemId) {
       ToDoService.deleteItem(_itemId).then(function(_result) {
         console.log("deleted item", _result);
-        loadData() ;
+        loadData();
       }, function(err) {
         console.log(err)
       });
@@ -84,7 +98,7 @@ angular.module('app.controllers', [])
         console.log("object to save:", $scope.todo);
         ToDoService.addItem($scope.todo).then(function(_result) {
           console.log("saved item", _result);
-          loadData() ;
+          loadData();
         }, function(err) {
           console.log(err)
         });
@@ -104,7 +118,7 @@ angular.module('app.controllers', [])
       });
     }
 
-    loadData() ;
+    loadData();
   }
 ])
 
