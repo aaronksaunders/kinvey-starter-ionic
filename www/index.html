@@ -7,9 +7,14 @@
 
     <style>
       .angular-google-map-container {
-          width: 100%;
-          height: 504px;
+        width: 100%;
+        height: 504px;
       }
+      .selected {
+        color: 'white';
+        background-color: 'blue'
+      }
+
     </style>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -30,13 +35,13 @@
 
   </head>
   <body ng-app="app" animation="slide-left-right-ios7">
-  <div>
     <div>
+      <div>
         <ion-nav-bar class="bar-stable">
-            <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">Back</ion-nav-back-button>
+          <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">Back</ion-nav-back-button>
         </ion-nav-bar>
         <ion-nav-view></ion-nav-view>
+      </div>
     </div>
-</div>
   </body>
 </html>

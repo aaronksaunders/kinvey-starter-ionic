@@ -45,8 +45,8 @@ angular.module('app.controllers', [])
 ])
 
 /**
-*
-*/
+ *
+ */
 .controller('signupCtrl', ['$scope', '$state', 'UserService', function($scope, $state, UserService) {
   $scope.user = {};
 
@@ -64,6 +64,20 @@ angular.module('app.controllers', [])
 
 .controller('listPageCtrl', ['$state', '$scope', 'UserService', 'ToDoService', '$ionicModal', // <-- controller dependencies
   function($state, $scope, UserService, ToDoService, $ionicModal) {
+
+    $scope.currentSelection = 'todos'
+    $scope.todosSelected = true
+
+    $scope.selectedListType = function(_selectedType) {
+      $scope.currentSelection = _selectedType;
+      loadData(_selectedType);
+      if (_selectedType === 'todos') {
+        $scope.todosSelected = true;
+      } else {
+        $scope.todosSelected = false
+      }
+    }
+
     $scope.logout = function() {
       UserService.logout();
       $state.go('login');
@@ -110,15 +124,23 @@ angular.module('app.controllers', [])
 
     }
 
-    function loadData() {
-      ToDoService.getAllItems().then(function(models) {
-        $scope.dataList = models
-      }, function(err) {
-        console.log(err)
-      });
+    function loadData(_loadType) {
+      if (_loadType === 'todos') {
+        ToDoService.getAllItems().then(function(models) {
+          $scope.dataList = models
+        }, function(err) {
+          console.log(err)
+        });
+      } else {
+        ToDoService.getAllImages().then(function(models) {
+          $scope.imageList = models
+        }, function(err) {
+          console.log(err)
+        });
+      }
     }
 
-    loadData();
+    loadData('todos');
   }
 ])
 

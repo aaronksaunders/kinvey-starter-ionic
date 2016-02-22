@@ -3,6 +3,19 @@ angular.module('app.services', [])
     function($q, KinveyConfiguration, $kinvey) {
 
       return {
+        getAllImages: function() {
+          var query = new $kinvey.Query();
+          var promise = $kinvey.File.find(query);
+          promise.then(function(models) {
+                        console.log(models)
+            return models;
+          }, function(err) {
+            console.log(err)
+            return err;
+          });
+
+          return promise;
+        },
         getAllItems: function() {
           var promise = $kinvey.DataStore.find('todo-collection');
           promise.then(function(models) {
