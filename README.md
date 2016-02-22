@@ -21,5 +21,8 @@ Ionic App Base - Kinvey Starter
 * Login
 * Create Account
 * View Data Collection
-* Delete Object From Data Collection
+* Delete Object From Data Collection - *swipe list item to expose delete button*
 * Add Object to Data Collection
+
+---
+[Older Version of Starter Project Can Be Found Here](https://github.com/aaronksaunders/IonicKinveyDataStore)
